@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>drag</title>
+    <script type="text/javascript">
+    function allowDrop(ev){
+      ev.preventDefault();
+    }
+
+    function drag(ev){
+      ev.dataTransfer.setData("Text",ev.target.id);//设置数据类型和值
+    }
+
+    function drop(ev){
+    var data=ev.dataTransfer.getData("Text");
+    ev.target.appendChild(document.getElementById(data));
+    }
+    </script>
+    <style type="text/css">
+      #div1 {
+        width: 350px;
+        height: 200px;
+        border: 1px solid grey;
+        margin-bottom: 10px;
+      }
+    </style>
+</head>
+<body>
+    请把图片放在矩形中
+    <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <img id="drag1" src="src/w3school_banner.png" width="300" draggable="true" ondragstart="drag(event)" />
+
+</body>
+</html>
